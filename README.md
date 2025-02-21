@@ -13,3 +13,15 @@ ssh-keygen -t rsa -C "aws" -f ~/.ssh/aws
 ```bash
 ansible-playbook playbook.yml
 ```
+
+```yml
+# Name of the ansible block (generally a description of what the block does)
+    - name: create link to nginx config file to enable it
+# Call to the file module in ansible
+      ansible.builtin.file:
+# This will set a symbolic link from the default file in /etc/nginx/sites-available to /etc/nginx/sites-enabled/default
+        src: /etc/nginx/sites-available/default
+        dest: /etc/nginx/sites-enabled/default
+# States that the module will use a symbolic link
+        state: link
+```
